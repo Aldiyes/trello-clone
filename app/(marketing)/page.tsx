@@ -12,7 +12,7 @@ export default function MarketingPage() {
           No 1 task management
         </div>
         <h1 className="text-3-xl mb-6 text-center text-neutral-800 md:text-6xl">
-          Taskify helps team move
+          Next Trello helps team move
         </h1>
         <div className="w-fit rounded-md bg-gradient-to-r from-fuchsia-600 to-pink-600 p-2 px-4 pb-4">
           <span className="text-3xl text-white md:text-6xl">work forward</span>
@@ -21,10 +21,10 @@ export default function MarketingPage() {
       <p className="mx-auto mt-4 max-w-xs text-center text-sm text-neutral-400 md:max-w-2xl md:text-xl">
         Collaborate, manage projects, and react new productivity peaks. From
         high rises to the home office, the way your team work is unique -
-        accomplish it all with Taskify.
+        accomplish it all with Next Trello.
       </p>
       <Button className="mt-6" size="lg" asChild>
-        <Link href="/sign-up">Get Taskify for free</Link>
+        <Link href="/sign-up">Get Next Trello for free</Link>
       </Button>
     </div>
   );

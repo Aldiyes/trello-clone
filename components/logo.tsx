@@ -12,7 +12,7 @@ export const Logo = () => {
           width="30"
           className="h-auto w-8"
         />
-        <p className="pb-1 text-lg text-neutral-700">Taskify</p>
+        <p className="pb-1 text-lg text-neutral-700">Next Trello</p>
       </div>
     </Link>
   );
