@@ -20,5 +20,3 @@
 *deleteCard 				= [DELETE]	/api/card?listId=&id=
 *reorderedCard 			= [PATCH]		/api/card/[boardId]
 *copyCard 					= [POST]		/api/card/[baordId]?listId=&id=
-
-# LOGS

@@ -28,7 +28,7 @@ export const Info = () => {
         <h1 className="text-xl font-semibold">{organization?.name}</h1>
         <div className="flex items-center">
           <CreditCard className="mr-1 h-3 w-3" />
-          <p className="text-xs text-muted-foreground">Free</p>
+          <p className="text-xs font-semibold text-muted-foreground">PRO</p>
         </div>
       </div>
     </div>

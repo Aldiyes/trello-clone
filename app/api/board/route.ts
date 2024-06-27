@@ -46,25 +46,6 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const orgLimitCount = await db.orgLimit.findUnique({
-      where: {
-        orgId,
-      },
-    });
-
-    if (!orgLimitCount) {
-      await db.orgLimit.create({
-        data: { orgId, count: 1 },
-      });
-    } else {
-      await db.orgLimit.update({
-        where: {
-          orgId,
-        },
-        data: { count: orgLimitCount.count + 1 },
-      });
-    }
-
     try {
       await db.auditLog.create({
         data: {
@@ -226,23 +207,6 @@ export async function DELETE(req: NextRequest) {
     });
 
     try {
-      const orgLimitCount = await db.orgLimit.findUnique({
-        where: {
-          orgId,
-        },
-      });
-
-      if (!orgLimitCount) {
-        return new NextResponse("Organization not found", { status: 404 });
-      }
-      await db.orgLimit.update({
-        where: {
-          orgId,
-        },
-        data: {
-          count: orgLimitCount.count! - 1,
-        },
-      });
       await db.auditLog.create({
         data: {
           orgId,

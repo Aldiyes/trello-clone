@@ -3,7 +3,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { revalidateTag } from "next/cache";
 
-import { API_URL } from "@/data/constants/api";
+import { API_BASE_URL } from "@/data/constants";
 
 import { errorMessage } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ export async function POST(
 
   const mergedOptions = { ...defaultOptions, ...options };
 
-  const res = await fetch(`${API_URL}${url}`, mergedOptions);
+  const res = await fetch(`${API_BASE_URL}${url}`, mergedOptions);
 
   return res.ok
     ? res.status === 204
@@ -48,7 +48,7 @@ export async function GET(url: string, options: RequestInit = {}) {
 
   const mergedOptions = { ...defaultOptions, ...options };
 
-  const res = await fetch(`${API_URL}${url}`, mergedOptions);
+  const res = await fetch(`${API_BASE_URL}${url}`, mergedOptions);
 
   return res.ok
     ? res.status === 204
@@ -76,7 +76,7 @@ export async function PATCH(
 
   const mergedOptions = { ...defaultOptions, ...options };
 
-  const res = await fetch(`${API_URL}${url}`, mergedOptions);
+  const res = await fetch(`${API_BASE_URL}${url}`, mergedOptions);
 
   return res.ok
     ? res.status === 204
@@ -102,7 +102,7 @@ export async function DELETE(
 
   const mergedOptions = { ...defaultOptions, ...options };
 
-  const res = await fetch(`${API_URL}${url}`, mergedOptions);
+  const res = await fetch(`${API_BASE_URL}${url}`, mergedOptions);
 
   return res.ok
     ? res.status === 204

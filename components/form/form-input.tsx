@@ -11,7 +11,7 @@ import * as z from "zod";
 
 import { Check, Loader2 } from "lucide-react";
 
-import { defaultImages } from "@/data/constants/images";
+import { defaultImages } from "@/data/images";
 
 import { POST } from "@/lib/actions";
 import { CreateBoardSchema } from "@/lib/schemas";
@@ -19,7 +19,6 @@ import { unsplash } from "@/lib/unsplash";
 import { cn } from "@/lib/utils";
 
 import { FormError } from "@/components/form/form-error";
-import { FormSuccess } from "@/components/form/form-success";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,8 +32,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { useProModal } from "@/hooks/use-pro-modal";
-import { hasAvailableCount } from "@/lib/org-limit";
 
 type Props = {
   closeRef: RefObject<HTMLButtonElement>;
@@ -42,13 +39,11 @@ type Props = {
 
 export const FormInput = ({ closeRef }: Props) => {
   const router = useRouter();
-  const proModal = useProModal();
   const [images, setImages] =
     useState<Array<Record<string, any>>>(defaultImages);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedImageId, setSelectedImageId] = useState(null);
 
-  const [success, setSuccess] = useState<string | undefined>("");
   const [error, setError] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
 
@@ -85,27 +80,16 @@ export const FormInput = ({ closeRef }: Props) => {
 
   const onSubmit = (values: z.infer<typeof CreateBoardSchema>) => {
     setError("");
-    setSuccess("");
 
     startTransition(() => {
-      hasAvailableCount()
-        .then((canCreate) => {
-          canCreate
-            ? POST("/board", values, {}, "board")
-                .then((res) => {
-                  toast.success(`Board "${res.title}" created`);
-                  setSuccess(`Board "${res.title}" created`);
-                  closeRef.current?.click();
-                  form.reset();
-                  router.push(`/board/${res.id}`);
-                })
-                .catch((error) => toast.error(error.message))
-            : (proModal.onOpen(),
-              toast.error(
-                "You have reached your limit of free boards. Please upgrade to create more.",
-              ));
+      POST("/board", values, {}, "board")
+        .then((res) => {
+          toast.success(`Board "${res.title}" created`);
+          closeRef.current?.click();
+          form.reset();
+          router.push(`/board/${res.id}`);
         })
-        .catch(() => toast.error("Something went wrong"));
+        .catch((error) => toast.error(error.message));
     });
   };
 
@@ -200,7 +184,6 @@ export const FormInput = ({ closeRef }: Props) => {
           />
         </div>
         <FormError message={error} />
-        <FormSuccess message={success} />
         <Button
           type="submit"
           disabled={isPending}

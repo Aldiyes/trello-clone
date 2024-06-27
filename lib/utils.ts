@@ -1,7 +1,8 @@
-import { ACTION } from "@/data/enums";
-import { TAuditLog } from "@/data/types";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+
+import { ACTION } from "@/data/enums";
+import { TAuditLog } from "@/data/types";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -35,8 +36,4 @@ export function generateLogMessage(log: TAuditLog) {
     default:
       return `unknown action ${entityType.toLowerCase()} "${entityTitle}"`;
   }
-}
-
-export function absoluteUrl(path: string) {
-  return `${process.env.NEXT_PUBLIC_APP_URL}${path}`;
 }

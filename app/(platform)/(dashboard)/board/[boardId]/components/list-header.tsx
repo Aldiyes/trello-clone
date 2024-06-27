@@ -33,15 +33,6 @@ export const ListHeader = ({ data, onAddCard }: Props) => {
   const [isEditing, setIsEditing] = useState(false);
   const [isPending, startTransition] = useTransition();
 
-  const form = useForm<z.infer<typeof UpdateListSchema>>({
-    resolver: zodResolver(UpdateListSchema),
-    defaultValues: {
-      id: data.id,
-      boardId: data.boardId,
-      title: data.title,
-    },
-  });
-
   const enableEditing = () => {
     setIsEditing(true);
     setTimeout(() => {
@@ -65,6 +56,15 @@ export const ListHeader = ({ data, onAddCard }: Props) => {
   };
 
   useEventListener("keydown", onKeyDown);
+
+  const form = useForm<z.infer<typeof UpdateListSchema>>({
+    resolver: zodResolver(UpdateListSchema),
+    defaultValues: {
+      id: data.id,
+      boardId: data.boardId,
+      title: data.title,
+    },
+  });
 
   const onSubmit = (values: z.infer<typeof UpdateListSchema>) => {
     if (values.title === data.title) {
