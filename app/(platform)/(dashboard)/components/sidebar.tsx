@@ -5,12 +5,12 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import { useLocalStorage } from "usehooks-ts";
 
-import { Organization } from "@/types";
-import { NavItem } from "./nav-item";
+import { TOrganization } from "@/data/types";
 
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { NavItem } from "./nav-item";
 
 type Props = {
   storageKey?: string;
@@ -88,7 +88,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: Props) => {
             key={organization.id}
             isActive={activeOrganization?.id === organization.id}
             isExpanded={expanded[organization.id]}
-            organization={organization as Organization}
+            organization={organization as TOrganization}
             onExpand={onExpand}
           />
         ))}

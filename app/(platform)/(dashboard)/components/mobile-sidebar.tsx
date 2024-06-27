@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { useMobileSidebar } from "@/hooks/use-mobile-sidebar";
-import { Sidebar } from "./sidebar";
 
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent } from "@/components/ui/sheet";
+import { Sidebar } from "./sidebar";
 
 export const MobileSidebar = () => {
   const pathname = usePathname();
