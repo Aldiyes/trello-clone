@@ -2,7 +2,6 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PlusIcon, X } from "lucide-react";
-import { useParams } from "next/navigation";
 import {
   ElementRef,
   KeyboardEventHandler,
